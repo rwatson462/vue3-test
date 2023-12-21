@@ -2,9 +2,9 @@
 import {ref} from 'vue'
 import {convertImperialToMetric, convertMetricToImperial} from "../helpers/converter.js";
 
-const stonesRef = ref('0')
-const poundsRef = ref('0')
-const kilosRef = ref('0')
+const stonesRef = ref(0)
+const poundsRef = ref(0)
+const kilosRef = ref(0)
 
 const imperialDisabled = ref(false)
 const metricDisabled = ref(false)
@@ -13,7 +13,7 @@ async function handleImperialUpdate() {
   metricDisabled.value = true
 
   convertImperialToMetric(stonesRef.value, poundsRef.value)
-      .then(kilos => kilosRef.value = kilos.toFixed(0))
+      .then(kilos => kilosRef.value = kilos)
       .finally(() => metricDisabled.value = false)
 }
 
@@ -22,8 +22,8 @@ async function handleMetricUpdate() {
 
   convertMetricToImperial(kilosRef.value)
       .then(({stones, pounds}) => {
-        stonesRef.value = stones.toFixed(0)
-        poundsRef.value = pounds.toFixed(0)
+        stonesRef.value = stones
+        poundsRef.value = pounds
       })
       .finally(() => imperialDisabled.value = false)
 }
