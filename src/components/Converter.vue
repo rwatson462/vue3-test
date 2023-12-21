@@ -1,31 +1,40 @@
 <script setup>
-import {computed, ref} from 'vue'
+import {nextTick, ref} from 'vue'
+import {convertImperialToMetric, convertMetricToImperial} from "../helpers/converter.js";
 
-const stones = ref('0')
-const pounds = ref('0')
-const kilos = ref('0')
+const stonesRef = ref('0')
+const poundsRef = ref('0')
+const kilosRef = ref('0')
 
-function handleStonesAndPoundsUpdate({target}) {
-  const s = parseInt(stones.value)
-  const p = parseInt(pounds.value)
-  kilos.value = Math.round((s * 14 + p) / 2.2).toFixed(0)
+const imperialDisabled = ref(false)
+const metricDisabled = ref(false)
+
+async function handleImperialUpdate() {
+  metricDisabled.value = true
+
+  convertImperialToMetric(stonesRef.value, poundsRef.value)
+      .then(kilos => kilosRef.value = kilos.toFixed(0))
+      .finally(() => metricDisabled.value = false)
 }
 
-function handleKilosUpdate({target}) {
-  const k = parseInt(kilos.value)
-  stones.value = Math.floor((k * 2.2) / 14).toFixed(0)
+async function handleMetricUpdate() {
+  imperialDisabled.value = true
 
-  const s = parseInt(stones.value)
-  pounds.value = Math.round(((k * 2.2) / 14 - s) * 14).toFixed(0)
+  convertMetricToImperial(kilosRef.value)
+      .then(({stones, pounds}) => {
+        stonesRef.value = stones.toFixed(0)
+        poundsRef.value = pounds.toFixed(0)
+      })
+      .finally(() => imperialDisabled.value = false)
 }
 </script>
 
 <template>
   <v-card title="Weight converter" subtitle="Stones and Pounds to Kilos" elevation="12">
     <form class="max-w-sm mx-auto flex flex-col">
-      <v-text-field label="Stones" type="number" name="stones" v-model.number="stones" @change="handleStonesAndPoundsUpdate" />
-      <v-text-field label="Pounds" type="number" name="pounds" v-model.number="pounds" @change="handleStonesAndPoundsUpdate" />
-      <v-text-field label="Kilos" type="number" name="kilos" v-model.number="kilos" @change="handleKilosUpdate" />
+      <v-text-field label="Stones" type="number" name="stones" v-model.number="stonesRef" @change="handleImperialUpdate" :disabled="imperialDisabled" />
+      <v-text-field label="Pounds" type="number" name="pounds" v-model.number="poundsRef" @change="handleImperialUpdate" :disabled="imperialDisabled" />
+      <v-text-field label="Kilos" type="number" name="kilos" v-model.number="kilosRef" @change="handleMetricUpdate" :disabled="metricDisabled" />
     </form>
   </v-card>
 </template>
