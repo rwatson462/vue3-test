@@ -1,5 +1,5 @@
 <script setup>
-import {nextTick, ref} from 'vue'
+import {ref} from 'vue'
 import {convertImperialToMetric, convertMetricToImperial} from "../helpers/converter.js";
 
 const stonesRef = ref('0')
