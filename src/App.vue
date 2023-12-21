@@ -3,8 +3,8 @@ import Converter from "./components/Converter.vue";
 </script>
 
 <template>
-  <header class="flex space-x-4 items-center justify-center rounded-xl bg-slate-50 shadow-inner p-2">
-    <h1 class="text-3xl font-bold text-slate-900">Vue3 demo!</h1>
+  <header class="flex space-x-4 items-center justify-center rounded-xlp-2">
+    <h1 class="text-3xl font-bold">Vue3 demo!</h1>
   </header>
   <section class="flex flex-col space-y-4 py-4">
     <p>In this 'ere demo, I present a converter from Pounds and Stone to Kilograms!</p>
