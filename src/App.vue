@@ -1,17 +1,16 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Converter from "./components/Converter.vue";
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <header class="flex space-x-4 items-center justify-center rounded-xl bg-slate-50 shadow-inner p-2">
+    <h1 class="text-3xl font-bold text-slate-900">Vue3 demo!</h1>
+  </header>
+  <section class="flex flex-col space-y-4 py-4">
+    <p>In this 'ere demo, I present a converter from Pounds and Stone to Kilograms!</p>
+    <p>Sound be easy to figure out - add Stone and Pounds below and see the Kilos being updated</p>
+  </section>
+  <Converter />
 </template>
 
 <style scoped>
