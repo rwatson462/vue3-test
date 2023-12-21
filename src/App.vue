@@ -1,16 +1,19 @@
 <script setup>
-import Converter from "./components/Converter.vue";
+
 </script>
 
 <template>
   <header class="flex space-x-4 items-center justify-center rounded-xlp-2">
     <h1 class="text-3xl font-bold">Vue3 demo!</h1>
   </header>
-  <section class="flex flex-col space-y-4 py-4">
-    <p>In this 'ere demo, I present a converter from Pounds and Stone to Kilograms!</p>
-    <p>Sound be easy to figure out - add Stone and Pounds below and see the Kilos being updated</p>
-  </section>
-  <Converter />
+  <nav>
+    <ul class="flex gap-4">
+      <li><router-link to="/" class="text-blue-500 hover:text-red-500 font-bold">Home</router-link></li>
+      <li><router-link to="/converter" class="text-blue-500 hover:text-red-500 font-bold">Converter</router-link></li>
+      <li><router-link to="/todo" class="text-blue-500 hover:text-red-500 font-bold">Todo</router-link></li>
+    </ul>
+  </nav>
+  <router-view />
 </template>
 
 <style scoped>

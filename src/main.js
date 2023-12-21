@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+import {Router} from "./routing/Router.js";
 
 // Vuetify
 import 'vuetify/styles'
@@ -8,7 +9,7 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
-const vuetify = createVuetify({
+const Vuetify = createVuetify({
     theme: {
         defaultTheme: 'dark',
     },
@@ -16,4 +17,7 @@ const vuetify = createVuetify({
     directives,
 })
 
-createApp(App).use(vuetify).mount('#app')
+createApp(App)
+    .use(Vuetify)
+    .use(Router)
+    .mount('#app')
