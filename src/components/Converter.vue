@@ -6,12 +6,17 @@ const pounds = ref('0')
 const kilos = ref('0')
 
 function handleStonesAndPoundsUpdate({target}) {
-  kilos.value = Math.round((stones.value * 14 + pounds.value) / 2.2).toFixed(2)
+  const s = parseInt(stones.value)
+  const p = parseInt(pounds.value)
+  kilos.value = Math.round((s * 14 + p) / 2.2).toFixed(0)
 }
 
 function handleKilosUpdate({target}) {
-  stones.value = Math.floor((kilos.value * 2.2) / 14).toFixed(0)
-  pounds.value = Math.round(((kilos.value * 2.2) / 14 - stones.value) * 14).toFixed(0)
+  const k = parseInt(kilos.value)
+  stones.value = Math.floor((k * 2.2) / 14).toFixed(0)
+
+  const s = parseInt(stones.value)
+  pounds.value = Math.round(((k * 2.2) / 14 - s) * 14).toFixed(0)
 }
 </script>
 
