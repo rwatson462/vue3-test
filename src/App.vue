@@ -6,11 +6,11 @@
   <header class="flex space-x-4 items-center justify-center rounded-xlp-2">
     <h1 class="text-3xl font-bold">Vue3 demo!</h1>
   </header>
-  <nav>
-    <ul class="flex gap-4">
-      <li><router-link to="/" class="text-blue-500 hover:text-red-500 font-bold">Home</router-link></li>
-      <li><router-link to="/converter" class="text-blue-500 hover:text-red-500 font-bold">Converter</router-link></li>
-      <li><router-link to="/todo" class="text-blue-500 hover:text-red-500 font-bold">Todo</router-link></li>
+  <nav class="py-4">
+    <ul class="flex gap-4 justify-center items-center">
+      <li><v-btn to="/" class="hover:text-red-500" variant="text">Home</v-btn></li>
+      <li><v-btn to="/converter" class="hover:text-red-500" variant="text">Converter</v-btn></li>
+      <li><v-btn to="/todo" class="hover:text-red-500" variant="text">Todo</v-btn></li>
     </ul>
   </nav>
   <router-view />
