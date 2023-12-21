@@ -3,7 +3,7 @@ import ConverterPage from "../pages/ConverterPage.vue";
 import TodoPage from "../pages/TodoPage.vue";
 
 export const routes = [
-    { path:'/', component: HomePage },
-    { path: '/converter', component: ConverterPage },
-    { path: '/todo', component: TodoPage }
+    { path:'/', component: HomePage, name: 'home' },
+    { path: '/converter', component: ConverterPage, name: 'converter' },
+    { path: '/todo', component: TodoPage, name: 'todo' }
 ]

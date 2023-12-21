@@ -8,9 +8,9 @@
   </header>
   <nav class="py-4">
     <ul class="flex gap-4 justify-center items-center">
-      <li><v-btn to="/" class="hover:text-red-500" variant="text">Home</v-btn></li>
-      <li><v-btn to="/converter" class="hover:text-red-500" variant="text">Converter</v-btn></li>
-      <li><v-btn to="/todo" class="hover:text-red-500" variant="text">Todo</v-btn></li>
+      <li><v-btn :to="{name: 'home'}" class="hover:text-red-500" variant="text">Home</v-btn></li>
+      <li><v-btn :to="{name: 'converter'}" class="hover:text-red-500" variant="text">Converter</v-btn></li>
+      <li><v-btn :to="{name: 'todo'}" class="hover:text-red-500" variant="text">Todo</v-btn></li>
     </ul>
   </nav>
   <router-view />
