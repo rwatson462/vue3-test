@@ -31,7 +31,7 @@ async function handleMetricUpdate() {
 
 <template>
   <v-card title="Weight converter" subtitle="Stones and Pounds to Kilos" elevation="12">
-    <form class="max-w-sm mx-auto flex flex-col">
+    <form class="max-w-sm mx-auto flex flex-col px-4">
       <v-text-field label="Stones" type="number" name="stones" v-model.number="stonesRef" @change="handleImperialUpdate" :disabled="imperialDisabled" />
       <v-text-field label="Pounds" type="number" name="pounds" v-model.number="poundsRef" @change="handleImperialUpdate" :disabled="imperialDisabled" />
       <v-text-field label="Kilos" type="number" name="kilos" v-model.number="kilosRef" @change="handleMetricUpdate" :disabled="metricDisabled" />
