@@ -1,5 +1,12 @@
 <script setup>
+import {useAuthStore} from "./stores/AuthStore.js";
 
+const authStore = useAuthStore()
+
+function logout() {
+  authStore.logout()
+      .then(() => location.reload())
+}
 </script>
 
 <template>
@@ -11,7 +18,15 @@
       <li><v-btn :to="{name: 'home'}" class="hover:text-red-500" variant="text">Home</v-btn></li>
       <li><v-btn :to="{name: 'converter'}" class="hover:text-red-500" variant="text">Converter</v-btn></li>
       <li><v-btn :to="{name: 'todo'}" class="hover:text-red-500" variant="text">Todo</v-btn></li>
+      <li v-if="authStore.isLoggedIn"><v-btn @click="logout()" class="hover:text-red-500" variant="text">Logout</v-btn></li>
+      <li v-if="! authStore.isLoggedIn">
+        <v-btn :to="{name: 'register'}" class="hover:text-red-500" variant="text">Register</v-btn>
+        <v-btn :to="{name: 'login'}" class="hover:text-red-500" variant="text">Log in</v-btn>
+      </li>
     </ul>
   </nav>
   <router-view />
+  <footer class="text-center text-sm text-gray-600 border-t border-gray-600 pt-2 mt-2">
+    <p>{{ authStore.user.id}}</p>
+  </footer>
 </template>
