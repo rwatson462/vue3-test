@@ -8,6 +8,6 @@ export const routes = [
     { path: '/', component: HomePage, name: 'home' },
     { path: '/converter', component: ConverterPage, name: 'converter' },
     { path: '/todo', component: TodoPage, name: 'todo', meta: {requiresAuth: true} },
-    { path: '/register', component: RegisterPage, name: 'register' },
-    { path: '/login', component: LoginPage, name: 'login' },
+    { path: '/register', component: RegisterPage, name: 'register', meta: {noAuth: true} },
+    { path: '/login', component: LoginPage, name: 'login', meta: {noAuth: true} },
 ]

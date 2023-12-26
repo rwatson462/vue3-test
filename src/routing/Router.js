@@ -17,4 +17,9 @@ Router.beforeEach(async to => {
         // todo get page details of requested page so we can redirect to it after login
         return { name: 'login' }
     }
+
+    if (to.meta.noAuth === true && authStore.isLoggedIn) {
+        // signed in but trying to access a page that requires no user signed in
+        return { name: 'home' }
+    }
 })
