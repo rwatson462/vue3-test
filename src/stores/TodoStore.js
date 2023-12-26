@@ -21,7 +21,7 @@ export const useTodoStore = defineStore(
             todos.value = data
         }
 
-        const addTodo = async todo => {
+        async function addTodo(todo) {
             const supabase = supabaseClient()
 
             const { data, error } = await supabase.from('todos').insert({
