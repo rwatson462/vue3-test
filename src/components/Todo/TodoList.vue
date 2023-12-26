@@ -2,7 +2,6 @@
   import {useTodoStore} from "../../stores/TodoStore.js";
 
   const todoStore = useTodoStore()
-
 </script>
 
 <template>

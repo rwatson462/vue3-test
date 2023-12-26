@@ -1,14 +1,34 @@
 import {defineStore} from "pinia";
 import {computed, ref} from "vue";
+import {supabaseClient} from "../helpers/supabaseClient.js";
 
 export const useTodoStore = defineStore(
     'todos',
     () => {
-        const todos = ref([])
+        const todos = ref(loadTodos())
         const todoCount = computed(() => todos.value.length)
 
-        function addTodo(todo) {
-            todos.value.push(todo)
+        async function loadTodos() {
+            const supabase = supabaseClient()
+
+            const { data, error } = await supabase.from('todos').select()
+
+            if (error) {
+                console.log(error)
+                throw new Error(error)
+            }
+
+            todos.value = data
+        }
+
+        const addTodo = async todo => {
+            const supabase = supabaseClient()
+
+            const { data, error } = await supabase.from('todos').insert({
+                title: todo.title,
+            })
+
+            await loadTodos()
         }
 
         return {
