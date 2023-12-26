@@ -1,7 +1,7 @@
 <script setup>
 
 import {ref} from "vue";
-import {supabaseClient} from "../helpers/createSupabaseClient.js";
+import {supabaseClient} from "../helpers/supabaseClient.js";
 
 const emailRef = ref('')
 const passwordRef = ref('')
