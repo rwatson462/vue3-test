@@ -37,8 +37,14 @@ export const useAuthStore = defineStore(
             }
         }
 
-        function register(email, password) {
-            // implement register here
+        async function register(email, password) {
+            const {data, error} = await supabase.auth.signUp({
+                email: email,
+                password: password,
+            })
+
+            // Supabase may populate an error property if something goes wrong, we'll catch that here and re-throw
+            if (error) throw new Error(error.message)
         }
 
         async function logout() {

@@ -1,31 +1,23 @@
 <script setup>
 
 import {ref} from "vue";
-import {supabaseClient} from "../helpers/supabaseClient.js";
+import {useAuthStore} from "../stores/AuthStore.js";
+import {Router} from "../routing/Router.js";
 
-const emailRef = ref('')
-const passwordRef = ref('')
+const authStore = useAuthStore()
+
+const email = ref('')
+const password = ref('')
 const submitting = ref(false)
 const error = ref('')
 
-function submitForm() {
+async function submitForm() {
   error.value = ''
   submitting.value = true
 
-  const supabase = supabaseClient()
-
-  supabase.auth.signUp({
-    email: emailRef.value,
-    password: passwordRef.value,
-  })
-      .then(({data, error}) => {
-        // Supabase doesn't throw an error if the user is already registered, however it does populate an error property
-        if (error) throw new Error(error.message)
-
-        // Success!
-        console.log(data)
-      })
-      .catch(message => error.value = message)
+  authStore.register(email.value, password.value)
+      .then(() => Router.push({name: 'home'}))
+      .catch(e => error.value = e.value)
       .finally(() => submitting.value = false)
 }
 </script>
@@ -45,8 +37,8 @@ function submitForm() {
       correctly!
     </v-card-text>
     <form class="max-w-sm mx-auto flex flex-col p-4" @submit.prevent="submitForm()">
-      <v-text-field label="Email address" type="email" name="email" v-model="emailRef" :disabled="submitting" />
-      <v-text-field label="Password" type="password" name="password" v-model="passwordRef" :disabled="submitting" />
+      <v-text-field label="Email address" type="email" name="email" v-model="email" :disabled="submitting" />
+      <v-text-field label="Password" type="password" name="password" v-model="password" :disabled="submitting" />
       <v-btn type="submit" text="Create account" variant="tonal" :disabled="submitting" />
       <v-card-text class="text-red-500" v-if="error">{{ error }}</v-card-text>
     </form>
