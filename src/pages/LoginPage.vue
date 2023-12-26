@@ -5,8 +5,8 @@ import {useAuthStore} from "../stores/AuthStore.js";
 
 const authStore = useAuthStore()
 
-const emailRef = ref('')
-const passwordRef = ref('')
+const email = ref('')
+const password = ref('')
 const error = ref('')
 const submitting = ref(false)
 
@@ -14,7 +14,7 @@ function login() {
   submitting.value = true
   error.value = ''
 
-  authStore.login(emailRef.value, passwordRef.value)
+  authStore.login(email.value, password.value)
       .then(() => Router.push({name: 'home'}))
       .catch((e) => error.value = e.message)
       .finally(() => submitting.value = false)
@@ -35,8 +35,8 @@ function login() {
   </section>
   <v-card title="Log in">
     <form class="max-w-sm mx-auto flex flex-col p-4" @submit.prevent="login()">
-      <v-text-field label="Email address" type="email" name="email" v-model="emailRef" :disabled="submitting" />
-      <v-text-field label="Password" type="password" name="password" v-model="passwordRef" :disabled="submitting" />
+      <v-text-field label="Email address" type="email" name="email" v-model="email" :disabled="submitting" />
+      <v-text-field label="Password" type="password" name="password" v-model="password" :disabled="submitting" />
       <v-btn type="submit" text="Create account" variant="tonal" :disabled="submitting" />
       <v-card-text class="text-red-500" v-if="error">{{ error }}</v-card-text>
     </form>
