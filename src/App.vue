@@ -26,7 +26,7 @@ function logout() {
     </ul>
   </nav>
   <router-view />
-  <footer class="text-center text-sm text-gray-600 border-t border-gray-600 pt-2 mt-2">
+  <footer class="text-center text-sm text-gray-600 border-t border-gray-600 pt-2 mt-2" v-if="authStore.user">
     <p>{{ authStore.user.id}}</p>
   </footer>
 </template>
