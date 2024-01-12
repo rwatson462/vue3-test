@@ -42,7 +42,7 @@ function logout() {
         <nav-item :route="{name: 'login'}" text="Log in" />
       </li>
     </ul>
-    <ul class="right-items">
+    <ul class="right-items" v-if="authStore.isLoggedIn">
       <v-btn icon="mdi-account-circle" variant="plain" :to="{name: 'profile'}" title="Your profile" />
     </ul>
   </nav>
